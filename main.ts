@@ -3,12 +3,26 @@ namespace SpriteKind {
     export const Waende = SpriteKind.create()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    BatterieBeschleunigung = -200
-    mySprite.sayText("Generator an", 1000, false)
+    if (BatterieBeschleunigung == 0) {
+        BatterieBeschleunigung = -200
+        mySprite.sayText("Generator an", 1000, false)
+    } else {
+        BatterieBeschleunigung = 0
+        mySprite.sayText("Generator aus", 1000, false)
+    }
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    BatterieBeschleunigung = 0
-    mySprite.sayText("Generator aus", 1000, false)
+    // Es werden 100 Elektronen erzeugt und in einer Liste abgespeichert
+    for (let index = 0; index < 50; index++) {
+        mySprite = sprites.create(img`
+            7 5 
+            5 6 
+            `, SpriteKind.elektron)
+        tiles.placeOnRandomTile(mySprite, assets.tile`transparency16`)
+        mySprite.setBounceOnWall(true)
+        mySprite.setVelocity(0, 0)
+        list.push(mySprite)
+    }
 })
 let l = 0
 let lquadrat = 0
@@ -17,6 +31,7 @@ let dx = 0
 let mySprite: Sprite = null
 let BatterieBeschleunigung = 0
 let list: Sprite[] = []
+list = []
 list = sprites.allOfKind(SpriteKind.elektron)
 let Reibung = 0.95
 let Widerstand = 0.3
