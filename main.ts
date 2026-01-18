@@ -4,11 +4,11 @@ namespace SpriteKind {
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     BatterieBeschleunigung = -200
-    mySprite.sayText("Batterie an", 1000, false)
+    mySprite.sayText("Generator an", 1000, false)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     BatterieBeschleunigung = 0
-    mySprite.sayText("Batterie aus", 1000, false)
+    mySprite.sayText("Generator aus", 1000, false)
 })
 let l = 0
 let lquadrat = 0
